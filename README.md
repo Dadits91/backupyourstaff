@@ -1,44 +1,63 @@
 # backupyourstaff
-# USB Backup Script - Early Stage Version
+# BackupUserDataToUSB
 
 ## Overview
-This PowerShell script automates the backup of user profile folders (Documents, Downloads, Music, Pictures, and Desktop) from all user accounts on a Windows system to a connected USB drive. Each backup is stored in a time-stamped folder to ensure multiple versions can be maintained.
+**BackupUserDataToUSB** is a simple, one-click solution to automatically back up user files from a Windows computer to a USB drive. This script detects any connected USB storage device and copies essential user folders, ensuring that important documents are safely stored.
 
 ## Features
-- Automatically detects and backs up user profile directories.
-- Creates a dedicated "Backups" folder on the USB drive.
-- Generates a unique timestamped folder for each backup session.
-- Ensures file permissions are correctly set for backup accessibility.
-- Checks if the USB drive is connected before initiating the backup process.
+- **One-click execution** – Simply run the script, and it handles everything automatically.
+- **Automatic USB detection** – No need to specify a drive letter; the script finds all connected USB drives.
+- **Backs up essential user folders**:
+  - Documents
+  - Downloads
+  - Music
+  - Pictures
+  - Videos
+- **Creates time-stamped backups** – Each backup is stored in a uniquely named folder (`Backup_YYYYMMDD_HHMMSS`) to prevent overwriting previous backups.
+- **Works for all user profiles** – Supports multiple users on the same computer.
+- **Silent execution** – Runs in the background without unnecessary pop-ups.
 
-## Prerequisites
-- A Windows system with PowerShell enabled.
-- A USB drive with sufficient storage space (ensure the correct drive letter is set in the script).
-- Administrator privileges may be required for accessing all user profiles.
+## How It Works
+1. Plug in a USB drive.
+2. Run `backup.bat` (with administrator privileges if prompted).
+3. The script will:
+   - Detect the connected USB drive(s).
+   - Create a `Backups` folder on the USB drive.
+   - Create a timestamped folder inside `Backups`.
+   - Copy user data from `C:\Users\[Profile]` to the USB backup folder.
+4. When the process is complete, a message will confirm the backup.
 
-## Usage Instructions
-1. Connect a USB drive to the system.
-2. Update the script with the correct drive letter if necessary (`$usbDriveLetter` variable).
-3. Run the script using PowerShell with administrative privileges.
-4. The script will create a backup folder named `Backup_YYYYMMDD_HHmmss` under `Backups` on the USB drive.
-5. It will iterate through all user profiles and copy the Documents, Downloads, Music, Pictures, and Desktop folders.
-6. Once completed, a confirmation message will be displayed.
+## Files Included
+- **`BackupUserDataToUSB.ps1`** – PowerShell script that performs the backup operation.
+- **`backup.bat`** – Batch script that runs the PowerShell script with one click.
 
-## Troubleshooting
-- **USB Drive Not Found**: Ensure the correct drive letter is assigned and update the script accordingly.
-- **Permission Issues**: Run the script as an administrator to access all user profile folders.
-- **Slow Backup Speed**: Large files or slow USB drives may cause delays. Consider using a high-speed USB device.
+## Requirements
+- Windows 10 or later
+- A connected USB storage device
+- Administrator privileges (if prompted)
 
-## Future Enhancements
-This is an early-stage script, and more features will be added in future versions, including:
-- Incremental backup to avoid redundant copies.
-- Email notifications upon successful backups.
-- Improved error handling and logging.
-- Option to specify custom folders for backup.
+## Usage
+1. Download and extract the files to a folder of your choice.
+2. Plug in a USB drive.
+3. **Run `backup.bat` as Administrator** (Right-click > Run as Administrator).
+4. Wait for the script to complete. Your files will be copied into `Backups\Backup_YYYYMMDD_HHMMSS` on the USB drive.
+5. Safely eject the USB drive after completion.
+
+## Notes
+- The script will **only copy existing files** and will not delete or modify any files on your system.
+- If no USB is detected, the script will notify you to plug one in.
+- This is an **early-stage version** – more features and improvements will be added soon!
+
+## Future Updates
+- Support for scheduled automatic backups
+- Cloud backup integration (OneDrive, Google Drive, etc.)
+- Email notifications upon successful backup
 
 ## Disclaimer
-This script is provided as-is with no guarantees. Use at your own risk and ensure proper testing before deploying in production environments.
+This script is provided "as is" without warranty of any kind. Use at your own risk. Always verify your backups to ensure data integrity.
 
 ---
-For feedback or suggestions, feel free to reach out!
+🚀 **Enjoy effortless backups with BackupUserDataToUSB!** 🚀
+
+
 
